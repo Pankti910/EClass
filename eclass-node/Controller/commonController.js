@@ -1,6 +1,5 @@
 const User=require('../Model/User');
 const Role=require('../Model/Role');
-const db=require('../connection_db');
 module.signup=async(req,res,next)=>{
      const fname=req.body.fname;
      const lname=req.body.lname;

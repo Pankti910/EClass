@@ -1,13 +1,11 @@
 const express=require("express");
 const router=express.Router();
-const commonController=require('../Controller/commonController');
+const roleController=require('../Controller/roleController');
 
 router.get('/',(req,res)=>{
-    commonController.login;
+    roleController.getRoles
 });
 router.post('/',(req,res)=>{
-    commonController.signup
-}
-);
-
+    roleController.addRole
+});
 module.exports=router;
