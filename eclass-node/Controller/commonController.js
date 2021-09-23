@@ -1,19 +1,19 @@
-const User=require('../Model/User');
-const Role=require('../Model/Role');
-module.signup=async(req,res,next)=>{
-     const fname=req.body.fname;
-     const lname=req.body.lname;
-     const email=req.body.email;
-     const password=req.body.password;
-     const role=req.body.role;
-     const accessToken='';
+var {User}=require('../Model/User');
+var {Role}=require('../Model/Role');
+const mongoose=require("mongoose");
+
+exports.signup=(req,res,next)=>{
+     console.log('call signup');
      var newUser=new User(req.body);
-     newUser.save().then((addednewUser)=>{
-       Role.findById(mongoose.Types.ObjectId(addednewUser.role)).then((roleToadd)=>{
-        roleToadd.role.push(addednewUser);
-        roleToadd.save();
-        });
-     }).catch(err=>{console.log(err)});;
+     newUser.save().then((res1)=>{
+       Role.findById(mongoose.Types.ObjectId(res1.role)).then((res2)=>{
+             console.log(res2);
+             res2.users.push(res1);
+             res2.save();
+
+       }).catch(err=>{console.log(err)});
+
+     });
 }
 
 

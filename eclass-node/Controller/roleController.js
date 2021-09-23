@@ -1,21 +1,20 @@
-const Role = require('../Model/Role');
+var {Role} = require('../Model/Role');
 
 
 exports.addRole=(req,res,next)=>{
     console.log('add role called');
-    const newRole=new Role(req.body);
+    var newRole=new Role({rolename:req.body.rolename,users:[]});
     newRole.save((err,docs)=>{
-        if(err) res.send({message:`Error occur during adding class`});
-        res.send({message: `New role is successfully added`});
+        if(err) res.status(500).json({message:`Error occur during adding class`});
+        res.status(200).json({message: `New role is successfully added`});
         console.log(docs);
     });
 }
 
 exports.getRoles=(req,res,next)=>{
-    Role.find((err,roles)=>{
-        if(!err) res.send(roles);
-        console.log(roles);
-        console.log(`Error occur while retriving data:`+JSON.stringify(err,undefined,2));
+    Role.find((err,docs)=>{
+      if(err) return res.status(500).send({message:`Error occur while retriving data`});
+      res.status(200).send(docs);
     });
 }
 
