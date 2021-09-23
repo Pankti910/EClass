@@ -1,0 +1,13 @@
+
+mat-form-field,textarea{
+   width: 100%;  
+}
+textarea{
+    resize: none;
+    overflow:auto;
+}
+.mat-raised-button{
+    color: #f0fff3;
+   background-color: #155724;
+   float: right;
+}

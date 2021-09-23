@@ -1,0 +1,13 @@
+
+Angular Folder
+npm install -g @angular/cli
+ng new eclass-angular
+npm install @angular/material @angular/cdk @angular/animations --save
+ng add @angular/material
+
+Node Folder
+npm install nodemon
+npm install express
+
+
+ng serve --host localip
