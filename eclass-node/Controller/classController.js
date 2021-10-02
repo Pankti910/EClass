@@ -13,22 +13,48 @@ exports.createClass=(req,res,next)=>{
         classname:req.body.classname,
         classcode:classcode,
         creatorOfclass:req.body.creatorOfclass,
-        teachers:new Array(req.body.creatorOfclass),
-        students:[]});
-          classCreate.save().then((res1)=>{
+        teachers:new Array(req.body.creatorOfclass)});
+
+        classCreate.save().then((r1)=>{
+            User.findById(req.body.creatorOfclass,(err,r2)=>{
+                r2.joinedClasses.push(r1);
+                r2.save();
+                console.log(r2);
+
+            });
+
+        }).catch(err=>{console.log(err)});
+
+          /*classCreate.save().then((res1)=>{
+              console.log(res1);
              User.findById(mongoose.Types.ObjectId(res1.creatorOfclass)).then((res2)=>{
+                 console("h1");
                  res2.classes.push(res1);
                  res2.save();
-                 res.send(res1);
+                 console("h2");
+                 console.log(res2);
+                 console("h3");
              }).catch(err=>res.send(err)); 
-          }).catch(err=>res.send(err));
+          }).catch(err=>res.send(err));*/
+
+        //  classCreate.save().then((res1)=>{
+        //      User.findById(mongoose.Types.ObjectId(res1.creatorOfclass),(err,res2)=>{
+        //         //  res2.classes.push(res1);
+        //         //  res2.save();
+        //         //  console.log(res2);
+        //         // res2[0].classes.push(res1);
+        //         // res2[0].save();
+        //         console.log(res2.status);
+        //      });
+        //  });
+
 
 }
 
 exports.addTeacher=(req,res,next)=>{
     const teacherToadd=User.findById(req.body.userid);
     const teacherInclass=Class.findById(req.body.classId);
-    teacherToadd.classes.push(teacherInclass);
+    teacherToadd.joinedClasses.push(teacherInclass);
     teacherToadd.save().then((teachAdded)=>{
         teacherInclass.teachers.push(teachAdded);
         teacherInclass.save((err,docs)=>{
@@ -58,6 +84,7 @@ exports.joinClassStudent=(req,res,next)=>{
             }
             if(studentList.indexOf(user)!==-1)
             {
+                console.log(user);
                 res.send({message:`Already join as student`});
             }
             else{
@@ -66,7 +93,7 @@ exports.joinClassStudent=(req,res,next)=>{
                 getClass[0].students.push(user);
                 getClass[0].save().then((studentJoinClass)=>{
                    User.findById(user).then((getStudent)=>{
-                      getStudent.classes.push(getClass[0]);
+                      getStudent.joinedClasses.push(getClass[0]);
                       getStudent.save();
                       res.send({class:getClass[0].students,student:getStudent}); 
                    }).catch(err=>{console.log(err)});

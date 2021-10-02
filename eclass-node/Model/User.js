@@ -29,9 +29,10 @@ const userSchema=mongoose.Schema({
         type:String,
         default:'Unblock'
     },
-    classes:[{
+    joinedClasses:[{
         type: Schema.Types.ObjectId,
-        ref:'class'
+        ref:'class',
+        default:[]
     }]
 });
 const User=mongoose.model('user',userSchema);

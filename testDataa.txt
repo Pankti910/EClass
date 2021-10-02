@@ -1,0 +1,7 @@
+{
+    "fname":"Pankti",
+    "lname":"Shah",
+    "email":"panktishah910@gmail.com",
+    "password":"abc",
+    "role":"614c9585b17e20cdcb7afeeb"
+}

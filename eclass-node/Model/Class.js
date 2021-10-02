@@ -20,7 +20,8 @@ const classSchema=mongoose.Schema({
     }],
     students:[{
         type: Schema.Types.ObjectId,
-        ref:'user'
+        ref:'user',
+        default:[]
     }],
     status:{
         type:String,
