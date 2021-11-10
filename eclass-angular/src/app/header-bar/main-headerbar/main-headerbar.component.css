@@ -1,0 +1,9 @@
+::ng-deep .main-headerbar{
+    width: 100%;
+    height: 40px;
+    background-color:none;
+}
+::ng-deep button{
+    background-color: transparent;
+    border: none;
+}

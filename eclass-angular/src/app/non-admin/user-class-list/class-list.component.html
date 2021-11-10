@@ -1,0 +1,6 @@
+<header-bar></header-bar>
+<mat-grid-list cols="3" rowHeight="2:1.0">
+    <mat-grid-tile  colspan="1" *ngFor='let in of counter(5) ;let i = index'>
+       <mat-card style="width:80%;height:50%;color: white;" [ngStyle]="{'background-color': getRandomColor()}">Class {{i}}</mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

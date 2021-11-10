@@ -1,6 +1,10 @@
 main{
     margin-top: 2rem!important;
     width: 80%;
-    margin: auto;
+    margin: 1rem auto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    font-family: 'Roboto',Helvetica,Arial,sans-serif;
 
 }

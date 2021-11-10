@@ -1,13 +1,20 @@
 
-<mat-card >
-
-    <mat-form-field  [floatLabel]="'never'">
-        <input matInput type="text" [(ngModel)]="enteredTitle" placeholder="Title">
-    </mat-form-field>
-    <mat-form-field  [floatLabel]="'never'">
-        <textarea style="resize: none;" placeholder="Content to post" matInput rows="3" [(ngModel)]="enteredContent"></textarea>
+<mat-card style="padding-bottom: 60px;">
+    <!--#postForm is reference to the form to access in ts file-->
+    <form (submit)="onPostAdd(postForm)" #postForm="ngForm">
        
-        <button mat-raised-button   (click)="onPostAdd()">POST</button>
-    </mat-form-field>
+        <mat-form-field  [floatLabel]="'never'">
+            <textarea style="resize: none;" placeholder="Content to post" matInput rows="3"
+            name="content" ngModel required></textarea>
+           
+            
+        </mat-form-field>
+        <button mat-raised-button type="reset"  style="margin-left:2px;margin-right: 2px;float: right;"  [disabled]="!postForm.valid">Discard</button>
+        <button class="add-post" color="basic" mat-raised-button style="margin-left:2px;margin-right: 2px;float: right; " type="submit" [disabled]="!postForm.valid">Post</button>
+       
+    </form>
+         
+   
+ 
 </mat-card>
 

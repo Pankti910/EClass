@@ -2,6 +2,16 @@ var {User}=require('../Model/User');
 var {Role}=require('../Model/Role');
 const mongoose=require("mongoose");
 
+class Message{
+  message=null;
+  constructor(){}
+  set message(message){
+    this.message=message;
+  }
+  get message(){
+      return this.message;
+  }
+}
 exports.signup=(req,res,next)=>{
      console.log('call signup');
      var newUser=new User(req.body);
@@ -17,25 +27,47 @@ exports.signup=(req,res,next)=>{
 }
 
 
-exports.login=(req,res,next)=>{
-    // try {
-    //     const { email, password } = req.body;
-    //     const user = await User.findOne({ email });
-    //     if (!user) return next(new Error("email doesn't exist"));
-    //     const validtePassword = await validatepassword(password, user.password);
-    //     if (!validtePassword) return next(new Error("password is incorect"));
-    //     const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    //         expiresIn: "1d"
-    //     });
-    //     await User.findByIdAndUpdate(user._id, { accessToken });
-    //     res.status(200).json({
-    //         data: { email: user.email, role: user.role },
-    //         accessToken
-    //     })
 
-    // } catch (error) {
-    //     next(error)
-    // }
+
+
+exports.login=(req,res,next)=>{
+    
+    if(req.session.role)
+    {
+      console.log(req.session.role);
+    }
+    else
+    {
+
+      var email=req.body.email;
+      var password=req.body.password;
+      console.log(email);
+      console.log(password);
+    User.findOne({email:email,password:password}).then((data)=>{
+      let m=new Message();
+      if(data!=null)
+      {
+      
+      Role.findById(data.role).then((result)=>{
+         sess = req.session;
+         sess.id=data._id;
+         sess.role=result.rolename;
+         console.log(sess);
+         m.message=result.rolename;
+         console.log(m);
+         res.status(200).json({messasge:m});
+  
+      }).catch(err=>console.log(err));
+         }
+      else{
+        m.message="Login Credential Wrong";
+        
+        res.status(200).json({message:message});
+        
+      }
+      
+    }).catch(err=>console.log(err));
+  }
 }
 
 

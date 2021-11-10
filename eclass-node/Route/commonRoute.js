@@ -9,6 +9,6 @@ const commonController=require('../Controller/commonController');
 //     roleController.addRole
 // });
 
-router.get('/',commonController.login);
-router.post('/',commonController.signup);
+router.post('/',commonController.login);
+router.post('/signup',commonController.signup);
 module.exports=router;

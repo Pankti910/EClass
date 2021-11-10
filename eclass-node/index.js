@@ -1,38 +1,36 @@
 const express=require('express');
-const bodyparser=require('body-parser');
+const debug=require("debug")("node-angular");
+var bodyParser = require('body-parser');
 const mongoose=require('mongoose');
 const app=express();
-app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json());
 const PORT=process.env.PORT || 9000;
 const adminRouter=require('./Route/adminRoute');
 const commonRoute=require('./Route/commonRoute');
 const roleRoute=require('./Route/roleRoute');
 const classRoute=require('./Route/classRoute');
-
+const session = require('express-session');
 
 mongoose.connect('mongodb://localhost:27017/EClassDB').then(()=>{console.log("db connected")});
 
 
 app.listen(PORT,()=>console.log('Server start at port 9000'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
-/*
-//call admin router
-app.use('/admin',adminRouter);
-//call common router
-app.use('/',commonRoute);
-//call role router
-app.use('/role',roleRoute);
-*/
-app.use('/d',function(req, res, next) {
-    // var err = new Error('Not Found');
-    // err.status = 404;
-    // next(err);
-    res.json({message:"HEllo"});
+app.use((req,res,next)=>{
+res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-with, Content-Type, Accept"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS , PUT "
+  );
+  next();
 });
-
-
+app.use(session({secret: 'ssshhhhh'}));
 app.use('/',commonRoute);
 app.use('/role',roleRoute);
 app.use('/admin',adminRouter);

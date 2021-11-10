@@ -11,3 +11,5 @@ npm install express
 
 
 ng serve --host localip
+
+ng serve --host 192.168.43.97

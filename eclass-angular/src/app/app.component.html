@@ -1,9 +1,4 @@
 
-
-
-    <header-bar></header-bar>
-    <main>
-
-        <post-add (postAdded)="onPostAdded($event)"></post-add>
-        <post-list [posts]="storedPosts"></post-list>
-    </main>
+<main>
+    <router-outlet></router-outlet>
+</main>

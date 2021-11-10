@@ -7,4 +7,5 @@ import { Component } from "@angular/core";
     styleUrls:['./header-bar.component.css']
 })
 
-export class HeaderBarComponent{}
+export class HeaderBarComponent{
+}

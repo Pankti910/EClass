@@ -1,0 +1,25 @@
+table{
+    width: 100%;
+    font-size: large;
+    float: right;
+}
+::ng-deep th{
+    background-color: #155724;
+    color: white;
+    border: none;
+    height: 40px;
+    text-align: center;    
+}
+td{
+ text-align: center;
+}
+
+::ng-deep button{
+    background-color: transparent;
+    border: none;
+}
+.header {
+    display: inline-block; 
+    width: 100%;
+  }
+  
