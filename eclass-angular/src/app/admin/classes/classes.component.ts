@@ -22,6 +22,7 @@ export class ClassesComponent implements OnInit{
       
         if(role=="Admin") this.allow="Yes";
         else this.allow="No";
+
         this.getClasses();
         this.classStatus="All";
     }

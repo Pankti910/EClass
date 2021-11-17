@@ -28,18 +28,19 @@ export class LoginComponent implements OnInit {
         //alert("3");
          const d:LoginCredential=Object.assign({email:this.username,password:this.password});
          this.loginService.login(d);
-
+         
 
          setTimeout(()=>{  
-         const role=localStorage.getItem('role');
+          const role=localStorage.getItem('role');
+         alert(role);
          if(role=="Admin")
        {
           
           this.router.navigate(['/admin-users']);
        }
-       else{
+       else if(role=="Non-Admin"){
           this.router.navigate(['/class-list']);
-       }},10);
+       }},300);
          //this.loginServiceCall(d).then(res=>{this.routingBaseOnRole();});
         
     }
