@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,11 +77,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule implements OnInit {
-  ngOnInit(){
-    alert("Cll");
-  }
-   
+export class AppModule{
+  
    
 
  }
