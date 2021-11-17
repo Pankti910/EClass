@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
               this.router.navigate(['/']);
           }
           else{
-            this.router.navigate(['/admin-classes']);
+            this.router.navigate(['/class-list']);
           }
       }
 }
