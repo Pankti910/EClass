@@ -19,6 +19,7 @@ export class ClassesComponent implements OnInit{
     constructor(private classesService:ClassesService,private router: Router){}
     ngOnInit(): void {
         const role=localStorage.getItem('role');
+      
         if(role=="Admin") this.allow="Yes";
         else this.allow="No";
         this.getClasses();
@@ -51,5 +52,13 @@ export class ClassesComponent implements OnInit{
             this.router.navigate(['/admin-users']);
         }
       }
-
+      redirectToPage(){
+          
+        if(localStorage.getItem('role')==null){
+            this.router.navigate(['/']);
+        }
+        else{
+          this.router.navigate(['/class-list']);
+        }
+    }
 }

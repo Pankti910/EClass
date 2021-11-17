@@ -8,5 +8,7 @@ import { Component } from "@angular/core";
 
 
 export class PageNotFoundComponent{
-    
+    onGoBackPage(){
+        alert("say");
+    }
 }

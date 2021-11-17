@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit {
     flagForDisplay=0;
     ngOnInit(){
        const role=localStorage.getItem('role');
+      
        if(role=="Admin") this.allow="Yes";
        else this.allow="No";
        
@@ -37,6 +38,11 @@ export class UsersComponent implements OnInit {
         this.userSub.unsubscribe();
     }
 
+    logout(){
+        
+        localStorage.removeItem("role");
+        console.log("Destory");
+    }
     changeStatusOfUser(_id:String,item:User){
         //alert("hey");
         this.usersService.changeUserStatus(_id,item);
@@ -53,5 +59,14 @@ export class UsersComponent implements OnInit {
            
             this.router.navigate(['/admin-classes']);
         }
+      }
+      redirectToPage(){
+          
+          if(localStorage.getItem('role')==null){
+              this.router.navigate(['/']);
+          }
+          else{
+            this.router.navigate(['/admin-classes']);
+          }
       }
 }

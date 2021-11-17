@@ -2,7 +2,7 @@
 <div style="border: 1px solid;border-color:black!important;border-radius: 20px;text-align: center;" *ngIf="allow!='Yes'">
     <h1>405</h1>
     <h1>Access Denied</h1>
-    <a href="/class-list">Go back to page</a>
+    <a [routerLink]="" (click)="redirectToPage()">Go back to page</a>
 </div>
 <div *ngIf="allow=='Yes'">
 <mat-tab-group mat-align-tabs="center" [selectedIndex]="0" (selectedTabChange)="tabClick($event)">

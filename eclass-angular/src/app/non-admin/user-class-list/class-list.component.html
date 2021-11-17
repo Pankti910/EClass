@@ -1,6 +1,17 @@
-<header-bar></header-bar>
-<mat-grid-list cols="3" rowHeight="2:1.0">
-    <mat-grid-tile  colspan="1" *ngFor='let in of counter(5) ;let i = index'>
-       <mat-card style="width:80%;height:50%;color: white;" [ngStyle]="{'background-color': getRandomColor()}">Class {{i}}</mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+
+
+<div style="border: 1px solid;border-color:black!important;border-radius: 20px;text-align: center;" *ngIf="allow!='Yes'">
+    <h1>405</h1>
+    <h1>Access Denied</h1>
+    <a [routerLink]="" (click)="redirectToPage()">Go back to page</a>
+</div>
+
+
+<div *ngIf="allow=='Yes'">
+    <header-bar></header-bar>
+    <mat-grid-list cols="3" rowHeight="2:1.0">
+        <mat-grid-tile  colspan="1" *ngFor='let in of counter(5) ;let i = index'>
+           <mat-card style="width:80%;height:50%;color: white;" [ngStyle]="{'background-color': getRandomColor()}">Class {{i}}</mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

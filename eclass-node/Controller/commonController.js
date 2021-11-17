@@ -14,16 +14,43 @@ class Message{
 }
 exports.signup=(req,res,next)=>{
      console.log('call signup');
-     var newUser=new User(req.body);
-     newUser.save().then((res1)=>{
-       Role.findById(mongoose.Types.ObjectId(res1.role)).then((res2)=>{
-             console.log(res2);
-             res2.users.push(res1);
-             res2.save();
+    
+     User.find({}).then((res1)=>{
+         var count=res1.length;
+         console.log(count);
+         var fname=req.body.fname;
+         var lname=req.body.lname;
+         var email=req.body.email;
+         var password=req.body.password;
+          var role_id=undefined;
+         if(count<0){
 
-       }).catch(err=>{console.log(err)});
+            Role.findOne({rolename:'Admin'}).then((res2)=>{
+                role_id=res2._id;
+            })
+         }
+         else{
+             Role.findOne({rolename:'Non-Admin'}).then((res2)=>{
+                 role_id=res2._id;
+             })
+         }
 
-     });
+         var newUser=new User({fname:fname,lname:lname,email:email,password:password,role:role_id});
+
+
+         console.log(newUser);
+
+     })
+    //  var newUser=new User(req.body);
+    //  newUser.save().then((res1)=>{
+    //    Role.findById(mongoose.Types.ObjectId(res1.role)).then((res2)=>{
+    //          console.log(res2);
+    //          res2.users.push(res1);
+    //          res2.save();
+
+    //    }).catch(err=>{console.log(err)});
+
+    //  });
 }
 
 

@@ -20,21 +20,28 @@ export class LoginComponent implements OnInit {
       this.password="";
     }
 
+
+
+
+
     onLogin(){
-        alert(this.username);
-        alert(this.password);
-        
+        //alert("3");
          const d:LoginCredential=Object.assign({email:this.username,password:this.password});
-     
+         this.loginService.login(d);
+
+
+         setTimeout(()=>{  
          const role=localStorage.getItem('role');
          if(role=="Admin")
-         {
-            this.router.navigate(['/admin-users']);
-         }
-         else{
-            this.router.navigate(['/class-list']);
-         }
-        this.loginService.login(d);
+       {
+          
+          this.router.navigate(['/admin-users']);
+       }
+       else{
+          this.router.navigate(['/class-list']);
+       }},10);
+         //this.loginServiceCall(d).then(res=>{this.routingBaseOnRole();});
+        
     }
 
 }
